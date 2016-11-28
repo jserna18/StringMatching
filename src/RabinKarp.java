@@ -4,8 +4,9 @@
 public class RabinKarp
 {
 
-  public RabinKarp(String pattern, String bigString, int q)
+  public RabinKarp(String bigString,String pattern)
   {
+    int q = 13;
     int M = pattern.length();
     int N = bigString.length();
     int i, j;
