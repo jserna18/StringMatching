@@ -1,10 +1,11 @@
-/**
- * Created by huynh on 11/28/2016.
- */
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class RabinKarp
 {
 
-  public RabinKarp(String bigString,String pattern)
+  private RabinKarp(String bigString,String pattern)
   {
     int q = 13;
     int M = pattern.length();
@@ -48,9 +49,9 @@ public class RabinKarp
           {
             j= M+1;
           }
-          if (j==M-1)
+          if (j==M)
           {
-
+            System.out.println("Pattern found at index %d \n"+ i);
           }
 //            return true;
         }
@@ -68,5 +69,23 @@ public class RabinKarp
       }
     }
 //    return false;
+  }
+  public static void main(String[] args) throws IOException
+
+  {
+
+//    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    Scanner scanner = new Scanner(new File(args[0]));
+
+    String string = scanner.nextLine();
+    System.out.println(string);
+
+    scanner = new Scanner(new File(args[1]));
+    String pattern = scanner.nextLine();
+    System.out.println(pattern);
+
+    RabinKarp rb = new RabinKarp(string, pattern);
+
   }
 }
