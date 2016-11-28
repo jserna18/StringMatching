@@ -70,6 +70,7 @@ public class BruteForce
   public static void main(String[] args) throws IOException
 
   {
+    long startTime = System.currentTimeMillis();
 
 //    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -83,6 +84,10 @@ public class BruteForce
     System.out.println(pattern);
 
     BruteForce brute = new BruteForce(string, pattern);
+
+    final long endTime = System.currentTimeMillis();
+
+    System.out.println("\nTotal execution time: " + (endTime - startTime) );
 
   }
 }
