@@ -16,7 +16,7 @@ public class RabinKarp
     int h = 1;
     int d = 256;// keyboard characters
     System.out.println("RabinKarp");
-    System.out.println("Pattern: "+pattern+" bigString: "+bigString);
+//    System.out.println("Pattern: "+pattern+" bigString: "+bigString);
 
     // The value of h would be "pow(d, M-1)%q"
     for (i = 0; i < M-1; i++)
@@ -52,6 +52,7 @@ public class RabinKarp
           if (j==M-1)
           {
             System.out.println("Pattern found at index %d \n"+ i);
+
           }
 //            return true;
         }
