@@ -49,7 +49,7 @@ public class RabinKarp
           {
             j= M+1;
           }
-          if (j==M)
+          if (j==M-1)
           {
             System.out.println("Pattern found at index %d \n"+ i);
           }
