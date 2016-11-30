@@ -5,51 +5,76 @@
  **/
 
 
-
 import java.io.BufferedReader;
 
 import java.io.File;
 import java.io.InputStreamReader;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
 /** Class KnuthMorrisPratt **/
 
 public class KnuthMorrisPratt
-
 {
-
-  /** Failure array **/
+  /**
+   * Failure array
+   **/
 
   private int[] failure;
 
-  /** Constructor **/
+  /**
+   * Constructor
+   **/
 
   public KnuthMorrisPratt(String string, String pattern)
-
   {
     /** pre construct failure array for a pattern **/
 
+    int index = 0;
+    int pos = 0;
     int arraySize = pattern.length();
     failure = new int[arraySize];
+    ArrayList<Integer> matches = new ArrayList<>();
 
     fail(pattern, arraySize);
 
     /** find match **/
 
-    int pos = posMatch(string, pattern);
+    while (true)
+    {
+      pos = posMatch(string, pattern, index);
+      index = pos + 1;
+      
+      if (pos == -1)
+      {
+        break;
+      }
 
-    if (pos == -1)
+      else
+      {
+        matches.add(pos);
+      }
+    }
 
-      System.out.println("\nNo match found");
-
+    if (!matches.isEmpty())
+    {
+      System.out.println("Matches found at position/s: ");
+      for(int idx: matches)
+      {
+        System.out.print(idx + " ");
+      }
+    }
     else
-
-      System.out.println("\nMatch found at index "+ pos);
+    {
+      System.out.println("No matches found.");
+    }
 
   }
+
+
 
   /** Failure function for a pattern **/
 
@@ -72,20 +97,15 @@ public class KnuthMorrisPratt
       else
 
         failure[j] = -1;
-
-    }
-    System.out.println("Failure table "+ failure.length);
-    for(int i = 0; i < failure.length;i++)
-    {
-      System.out.println(failure[i]);
     }
   }
 
   /** Function to find match for a pattern **/
 
-  private int posMatch(String string, String pattern)
+  private int posMatch(String string, String pattern, int index)
   {
-    int i = 0, j = 0;
+    int i = index;
+    int j = 0;
     int stringLength = string.length();
     int patternLength = pattern.length();
 
@@ -109,8 +129,7 @@ public class KnuthMorrisPratt
 
   public static void main(String[] args) throws IOException
   {
-
-//    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    System.out.println("Knuth Morris Pratt");
 
     Scanner scanner = new Scanner(new File(args[0]));
     String string = scanner.nextLine();
@@ -118,8 +137,15 @@ public class KnuthMorrisPratt
     scanner = new Scanner(new File(args[1]));
     String pattern = scanner.nextLine();
 
-    KnuthMorrisPratt kmp = new KnuthMorrisPratt(string, pattern);
+    for(int i = 0; i < 10; i++)
+    {
+      long startTime = System.nanoTime();
 
+      KnuthMorrisPratt kmp = new KnuthMorrisPratt(string, pattern);
+
+      final long endTime = System.nanoTime();
+
+      System.out.println("\nTotal execution time: " + (endTime - startTime));
+    }
   }
-
 }

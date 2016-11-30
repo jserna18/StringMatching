@@ -18,14 +18,14 @@ public class StringGenerator
 
     try {
       //create a temporary file
-      logFile = new File("Medium");
+      logFile = new File("Large");
 
       // This will output the full path where the file will be written to...
       System.out.println(logFile.getCanonicalPath());
 
       writer = new BufferedWriter(new FileWriter(logFile));
 
-      for (int i = 0; i < 100_000; i++)
+      for (int i = 0; i < 90_000_000; i++)
       {
 
         int ascii = rand.nextInt(122 - 97 + 1) + 97;
@@ -65,7 +65,7 @@ public class StringGenerator
       int patternLocation = rand.nextInt(maxLocation - 1 + 1) + 1;
       String pattern = string.substring(patternLocation, patternLocation+maxPatternLength);
 
-      logFile = new File("MediumPattern");
+      logFile = new File("LargePattern");
       try
       {
         writer = new BufferedWriter(new FileWriter(logFile));

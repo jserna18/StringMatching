@@ -28,7 +28,7 @@ public class BruteForce
     }
     else
     {
-      System.out.println("Matches found at index: ");
+      System.out.println("Matches found at position/s: ");
 
       for(int i = 0; i < match.size(); i++)
       {
@@ -70,24 +70,24 @@ public class BruteForce
   public static void main(String[] args) throws IOException
 
   {
-    long startTime = System.currentTimeMillis();
-
-//    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    System.out.println("Brute Force");
 
     Scanner scanner = new Scanner(new File(args[0]));
-
     String string = scanner.nextLine();
-    System.out.println(string);
 
     scanner = new Scanner(new File(args[1]));
     String pattern = scanner.nextLine();
-    System.out.println(pattern);
 
-    BruteForce brute = new BruteForce(string, pattern);
+    for(int i = 0; i < 10; i++)
+    {
+      long startTime = System.nanoTime();
 
-    final long endTime = System.currentTimeMillis();
+      BruteForce brute = new BruteForce(string, pattern);
 
-    System.out.println("\nTotal execution time: " + (endTime - startTime) );
+      final long endTime = System.nanoTime();
+
+      System.out.println("\nTotal execution time: " + (endTime - startTime));
+    }
 
   }
 }

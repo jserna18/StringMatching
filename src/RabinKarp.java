@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RabinKarp
@@ -7,7 +8,8 @@ public class RabinKarp
 
   private RabinKarp(String bigString,String pattern)
   {
-    int q = 13;
+    ArrayList<Integer> matches = new ArrayList<>();
+    int q = 1069;
     int M = pattern.length();
     int N = bigString.length();
     int i, j;
@@ -15,8 +17,6 @@ public class RabinKarp
     int t = 0; // hash value for txt
     int h = 1;
     int d = 256;// keyboard characters
-    System.out.println("RabinKarp");
-    System.out.println("Pattern: "+pattern+" bigString: "+bigString);
 
     // The value of h would be "pow(d, M-1)%q"
     for (i = 0; i < M-1; i++)
@@ -51,7 +51,7 @@ public class RabinKarp
           }
           if (j==M-1)
           {
-            System.out.println("Pattern found at index %d \n"+ i);
+            matches.add(i);
           }
 //            return true;
         }
@@ -69,23 +69,44 @@ public class RabinKarp
       }
     }
 //    return false;
+
+    if(!matches.isEmpty())
+    {
+      System.out.println("Patterns found at position/s:");
+      for(int idx: matches)
+      {
+        System.out.print(idx + " ");
+      }
+    }
+    else
+    {
+      System.out.println("No Matches Found.");
+    }
   }
   public static void main(String[] args) throws IOException
 
   {
+    System.out.println("Rabin-Karp");
 
 //    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     Scanner scanner = new Scanner(new File(args[0]));
-
     String string = scanner.nextLine();
-    System.out.println(string);
 
     scanner = new Scanner(new File(args[1]));
     String pattern = scanner.nextLine();
-    System.out.println(pattern);
 
-    RabinKarp rb = new RabinKarp(string, pattern);
+    for(int i = 0; i < 10; i++)
+    {
+      long startTime = System.currentTimeMillis();
+
+      RabinKarp rb = new RabinKarp(string, pattern);
+
+      final long endTime = System.currentTimeMillis();
+
+      System.out.println("\nTotal execution time: " + (endTime - startTime));
+    }
+
 
   }
 }
